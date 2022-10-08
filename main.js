@@ -1,10 +1,12 @@
 const menuEmail = document.querySelector('.navbar-email');
 const menuHamIcon = document.querySelector('.menu');
 const menuCarritoIcon = document.querySelector('.navbar-shopping-cart');
+const productDetailCloseIcon = document.querySelector('.product-detail-close');
 const desktopMenu = document.querySelector('.desktop-menu');
 const mobileMenu = document.querySelector('.mobile-menu');
 const shoppingCartContainer = document.querySelector('#shoppingCartContainer');
 const cardsContainer = document.querySelector('.cards-container');
+const productDetailContainer = document.querySelector('#product-detail');
 
 
 menuEmail.addEventListener('click', toogleDesktopMenu);
@@ -13,10 +15,13 @@ menuHamIcon.addEventListener('click', toogleMobileMenu);
 
 menuCarritoIcon.addEventListener('click', toogleCarritoDesktop);
 
+productDetailCloseIcon.addEventListener('click', closeProductDetailAside);
+
 function toogleDesktopMenu(){
    mobileMenu.classList.add('inactive');
    shoppingCartContainer.classList.add('inactive');
    desktopMenu.classList.toggle('inactive');
+   productDetailContainer.classList.add('inactive');
 }
 
 
@@ -24,12 +29,28 @@ function toogleMobileMenu(){
     desktopMenu.classList.add('inactive');
     shoppingCartContainer.classList.add('inactive');
     mobileMenu.classList.toggle('inactive');
+    productDetailContainer.classList.add('inactive');
 }
 
 function  toogleCarritoDesktop(){
     desktopMenu.classList.add('inactive');
     mobileMenu.classList.add('inactive');
     shoppingCartContainer.classList.toggle('inactive');
+    productDetailContainer.classList.add('inactive');
+}
+
+function openProductDetailAside(){
+    productDetailContainer.classList.remove('inactive');
+    mobileMenu.classList.add('inactive');
+    shoppingCartContainer.classList.add('inactive');
+    desktopMenu.classList.add('inactive');
+}
+
+function closeProductDetailAside(){
+    productDetailContainer.classList.add('inactive');
+    mobileMenu.classList.add('inactive');
+    shoppingCartContainer.classList.add('inactive');
+    desktopMenu.classList.add('inactive');
 }
 
 const productList = [];
@@ -86,9 +107,11 @@ for (product of productList){
 
     const productImg = document.createElement('img');
     productImg.setAttribute('src', product.image);
+    productImg.addEventListener('click', openProductDetailAside);
 
     const productInfo = document.createElement('div');
     productInfo.classList.add('product-info');
+
 
     const productInfoDiv = document.createElement('div');
 
